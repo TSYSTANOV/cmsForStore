@@ -5,7 +5,7 @@ import { toBase64 } from "./utils.js";
 const updateCategory = async () => {
   category.textContent = "";
   const categoryList = await getCategory();
-  console.log(categoryList);
+
   const categoryOption = categoryList.map((item) => {
     const option = document.createElement("option");
     option.value = item;

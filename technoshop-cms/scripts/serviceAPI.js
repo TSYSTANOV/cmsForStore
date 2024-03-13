@@ -26,4 +26,10 @@ function postGoods(data) {
     })
     .catch((error) => error);
 }
-export { getGoods, getCategory, postGoods };
+function deleteGood(id) {
+  return fetch(`${BASE_URL}/api/goods?id=${id}`, {
+    method: "DELETE",
+  }).then((response) => response.json());
+}
+
+export { getGoods, getCategory, postGoods, deleteGood };

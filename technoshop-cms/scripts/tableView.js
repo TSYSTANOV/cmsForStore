@@ -1,4 +1,5 @@
 import { category, tableGoods } from "./elements.js";
+import { deleteGood } from "./serviceAPI.js";
 import { currencyFormat } from "./utils.js";
 
 function createRow({ id, title, category, price }) {
@@ -11,13 +12,23 @@ function createRow({ id, title, category, price }) {
     <td>${category}</td>
     <td class="text-end">${currencyFormat(price)}</td>
     <td class="d-flex">
-      <button class="btn-table btn-delete">
-        <svg width="30" height="30">
-          <use xlink:href="#delete" />
-        </svg>
-      </button>
     </td>
     `;
+  const btnDel = document.createElement("button");
+  btnDel.className = "btn-table btn-delete";
+  btnDel.innerHTML = `
+  <svg width="30" height="30">
+  <use xlink:href="#delete" />
+  </svg>`;
+  btnDel.addEventListener("click", async () => {
+    console.log("delete");
+    if (confirm(`Вы действительно хотите удалить товар: ${title} ?`)) {
+      tr.remove();
+      const result = await deleteGood(id);
+      console.log(result);
+    }
+  });
+  tr.querySelector(".d-flex").append(btnDel);
   return tr;
 }
 
