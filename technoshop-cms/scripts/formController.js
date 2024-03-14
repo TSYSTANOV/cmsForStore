@@ -1,5 +1,6 @@
 import { category, form } from "./elements.js";
-import { getCategory, postGoods } from "./serviceAPI.js";
+import { showPreview } from "./previewController.js";
+import { BASE_URL, getCategory, getGoods, postGoods } from "./serviceAPI.js";
 import { toBase64 } from "./utils.js";
 
 const updateCategory = async () => {
@@ -37,3 +38,15 @@ export const formController = () => {
     console.log(goods);
   });
 };
+
+export const fillingForm = async(id) => {
+  const data = await getGoods(id)
+  form.title.value = data.title
+  form.category.value = data.category
+  form.description.value = data.description.join('\n')
+  form.price.value = data.price
+  form.display.value = data.display
+  form.imagesave.value = data.image
+  console.log(data)
+  showPreview(BASE_URL + '/' + data.image)
+}

@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3024";
 
-function getGoods() {
-  return fetch(`${BASE_URL}/api/goods?nopage=true`).then((response) =>
+function getGoods(id) {
+  return fetch(`${BASE_URL}/api/goods/${id ? id : '?nopage=true'}`).then((response) =>
     response.json()
   );
 }
@@ -27,9 +27,9 @@ function postGoods(data) {
     .catch((error) => error);
 }
 function deleteGood(id) {
-  return fetch(`${BASE_URL}/api/goods?id=${id}`, {
+  return fetch(`${BASE_URL}/api/goods/${id}`, {
     method: "DELETE",
   }).then((response) => response.json());
 }
 
-export { getGoods, getCategory, postGoods, deleteGood };
+export { getGoods, getCategory, postGoods, deleteGood ,BASE_URL};

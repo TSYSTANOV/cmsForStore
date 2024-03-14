@@ -4,5 +4,7 @@ const form = document.querySelector(".modal-content");
 const preview = document.querySelector(".preview");
 const tableGoods = document.querySelector(".table-goods");
 const category = document.querySelector("#category");
+let modalTitle = document.querySelector('.modal-title')
+let modalSubmitBtn = document.querySelector('.modal-submit-btn')
 
-export { modalBtn, modal, form, preview, tableGoods, category };
+export { modalBtn, modal, form, preview, tableGoods, category, modalTitle, modalSubmitBtn };
