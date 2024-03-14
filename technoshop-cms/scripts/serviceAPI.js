@@ -29,7 +29,27 @@ function postGoods(data) {
 function deleteGood(id) {
   return fetch(`${BASE_URL}/api/goods/${id}`, {
     method: "DELETE",
+    headers:{
+      'Content-Type': 'application/json'
+    }
   }).then((response) => response.json());
 }
 
-export { getGoods, getCategory, postGoods, deleteGood ,BASE_URL};
+function editGoods(data, id) {
+  event.preventDefault()
+  return fetch(`${BASE_URL}/api/goods/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application.json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .catch((error) => error);
+}
+
+
+export { getGoods, getCategory, postGoods, deleteGood, editGoods, BASE_URL};

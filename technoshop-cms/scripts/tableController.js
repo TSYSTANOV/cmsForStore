@@ -1,5 +1,5 @@
 import { tableGoods, modal } from "./elements.js";
-import modalController from "./modalController.js";
+import {modalController} from "./modalController.js";
 import { getGoods } from "./serviceAPI.js";
 import { tableRender } from "./tableView.js";
 

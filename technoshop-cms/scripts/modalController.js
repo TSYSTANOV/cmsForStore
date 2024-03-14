@@ -31,6 +31,7 @@ function modalController(obj) {
       closeModal(modal, classOpen);
       hidePreview();
       form.reset();
+      form.querySelector('[data-id-good]').dataset.idGood = ''
     }
   });
 }
@@ -48,4 +49,4 @@ if(delegation){
 }
 }
 
-export default modalController;
+export {modalController, closeModal}

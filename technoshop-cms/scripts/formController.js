@@ -1,6 +1,7 @@
 import { category, form } from "./elements.js";
+import { closeModal } from "./modalController.js";
 import { showPreview } from "./previewController.js";
-import { BASE_URL, getCategory, getGoods, postGoods } from "./serviceAPI.js";
+import { BASE_URL, editGoods, getCategory, getGoods, postGoods } from "./serviceAPI.js";
 import { toBase64 } from "./utils.js";
 
 const updateCategory = async () => {
@@ -33,20 +34,27 @@ export const formController = () => {
     } else {
       data.image = await toBase64(data.image);
     }
-    // console.log(data);
+    if(data.imagesave){
+      const goods = await editGoods(data, form.querySelector('[data-id-good]').dataset.idGood)
+      // editRow(goods)
+      closeModal(modal,'d-block')
+      return
+    }
     const goods = await postGoods(data);
-    console.log(goods);
+    
   });
 };
 
 export const fillingForm = async(id) => {
   const data = await getGoods(id)
+  form.querySelector('[data-id-good]').dataset.idGood = id
   form.title.value = data.title
   form.category.value = data.category
   form.description.value = data.description.join('\n')
   form.price.value = data.price
   form.display.value = data.display
   form.imagesave.value = data.image
-  console.log(data)
+  form.identificator = id
   showPreview(BASE_URL + '/' + data.image)
 }
+

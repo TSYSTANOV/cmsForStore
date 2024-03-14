@@ -1,6 +1,6 @@
 import { modalBtn, modal } from "./elements.js";
 import { formController } from "./formController.js";
-import modalController from "./modalController.js";
+import {modalController} from "./modalController.js";
 import { previewController } from "./previewController.js";
 import { tableController } from "./tableController.js";
 
